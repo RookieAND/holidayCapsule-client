@@ -1,6 +1,11 @@
 import ky, { Options } from 'ky-universal';
 
-const API = ky.create({ prefixUrl: process.env.SERVER_URL });
+const SERVER_URL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.PROD_SERVER_URL
+    : process.env.DEV_SERVER_URL;
+
+const API = ky.create({ prefixUrl: SERVER_URL, credentials: 'include' });
 
 /**
  * GET 요청을 처리하는 API 유틸 함수 getAsync
@@ -41,16 +46,14 @@ export async function postAsync<T = undefined>(
  * @param T 요청 결과로 받을 데이터의 타입
  *
  * @param url 요청을 전송할 URL
- * @param data body 에 넣어 보낼 데이터
  * @param config Ky 요청 관련 config (Options)
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function deleteAsync<T = undefined>(
   url: string,
-  data: unknown,
   config?: Options,
 ): Promise<T> {
-  const response = await API.delete(url, { json: data, ...config });
+  const response = await API.delete(url, config);
   return response.json<T>();
 }
 
