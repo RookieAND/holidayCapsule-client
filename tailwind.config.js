@@ -1,0 +1,86 @@
+const config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/domains/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      fontSize: {
+        h1: ["1.5rem", { lineHeight: "2rem", fontWeight: 700 }],
+        h2: ["1.375rem", { lineHeight: "1.875rem", fontWeight: 700 }],
+        h3: ["1.25rem", { lineHeight: "1.75rem", fontWeight: 700 }],
+        h4: ["1.125rem", { lineHeight: "1.625rem", fontWeight: 700 }],
+        subtitle1: ["1rem", { lineHeight: "1.5rem", fontWeight: 700 }],
+        subtitle2: ["0.875rem", { lineHeight: "1.375rem", fontWeight: 700 }],
+        body1: ["1.125rem", { lineHeight: "1.625rem", fontWeight: 400 }],
+        body2: ["1rem", { lineHeight: "1.5rem", fontWeight: 400 }],
+        body3: ["0.875rem", { lineHeight: "1.375rem", fontWeight: 400 }],
+        caption: ["0.75rem", { lineHeight: "1.25rem", fontWeight: 500 }],
+      },
+      colors: {
+        black: "#181818",
+        gray: {
+          50: "#FAFAFA",
+          100: "#F5F5F5",
+          200: "#EEEEEE",
+          300: "#DDDDDD",
+          400: "#BBBBBB",
+          500: "#999999",
+          600: "#777777",
+          700: "#5B5B5B",
+          800: "#444444",
+          900: "#262626",
+        },
+        blue: {
+          50: "#e9ebff",
+          100: "#c8cdff",
+          200: "#a1acff",
+          300: "#758bff",
+          400: "#4f6eff",
+          500: "#1852ff",
+          600: "#1149f3",
+          700: "#003de6",
+          800: "#0030db",
+          900: "#0013cb",
+        },
+        red: {
+          50: "#FBE9E7",
+          100: "#FFCBBD",
+          200: "#FFA992",
+          300: "#FF8767",
+          400: "#FF6D46",
+          500: "#FF5127",
+          600: "#FF4B22",
+          700: "#F1441D",
+          800: "#E33C19",
+          900: "#CA2E0E",
+        },
+        green: {
+          50: "#E5F5ED",
+          100: "#C0E6D2",
+          200: "#97D6B6",
+          300: "#69C799",
+          400: "#43BB84",
+          500: "#00AF6F",
+          600: "#00A064",
+          700: "#008E57",
+          800: "#007D4B",
+          900: "#005D36",
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
