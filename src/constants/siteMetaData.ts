@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-const APP_NAME = 'holiday-capsule';
+const APP_NAME = 'holidayCapsule';
 const APP_DESCRIPTION = '연말이 지나기 전에, 소중한 추억을 친구와 공유해보세요!';
 
 export const metadata: Metadata = {
