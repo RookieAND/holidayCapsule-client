@@ -32,9 +32,9 @@ export async function getAsync<T = undefined>(
  * @param config Ky 요청 관련 config (Options)
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
-export async function postAsync<T = undefined>(
+export async function postAsync<T = undefined, D = unknown>(
   url: string,
-  data: unknown,
+  data: D,
   config?: Options,
 ): Promise<T> {
   const response = await API.post(url, { json: data, ...config });
