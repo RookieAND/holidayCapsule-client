@@ -1,9 +1,9 @@
 import ky, { Options } from 'ky-universal';
 
 const SERVER_URL =
-  process.env.NODE_ENV === 'production'
-    ? process.env.PROD_SERVER_URL
-    : process.env.DEV_SERVER_URL;
+    process.env.NODE_ENV === 'production'
+        ? process.env.PROD_SERVER_URL
+        : process.env.DEV_SERVER_URL;
 
 const API = ky.create({ prefixUrl: SERVER_URL, credentials: 'include' });
 
@@ -16,11 +16,11 @@ const API = ky.create({ prefixUrl: SERVER_URL, credentials: 'include' });
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function getAsync<T = undefined>(
-  url: string,
-  config?: Options,
+    url: string,
+    config?: Options,
 ): Promise<T> {
-  const response = await API.get(url, { ...config });
-  return response.json<T>();
+    const response = await API.get(url, { ...config });
+    return response.json<T>();
 }
 
 /**
@@ -33,12 +33,12 @@ export async function getAsync<T = undefined>(
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function postAsync<T = undefined, D = unknown>(
-  url: string,
-  data: D,
-  config?: Options,
+    url: string,
+    data: D,
+    config?: Options,
 ): Promise<T> {
-  const response = await API.post(url, { json: data, ...config });
-  return response.json<T>();
+    const response = await API.post(url, { json: data, ...config });
+    return response.json<T>();
 }
 
 /**
@@ -50,11 +50,11 @@ export async function postAsync<T = undefined, D = unknown>(
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function deleteAsync<T = undefined>(
-  url: string,
-  config?: Options,
+    url: string,
+    config?: Options,
 ): Promise<T> {
-  const response = await API.delete(url, config);
-  return response.json<T>();
+    const response = await API.delete(url, config);
+    return response.json<T>();
 }
 
 /**
@@ -67,15 +67,15 @@ export async function deleteAsync<T = undefined>(
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function patchAsync<T = undefined>(
-  url: string,
-  data: unknown,
-  config?: Options,
+    url: string,
+    data: unknown,
+    config?: Options,
 ): Promise<T> {
-  const response = await API.patch(url, {
-    json: data,
-    ...config,
-  });
-  return response.json<T>();
+    const response = await API.patch(url, {
+        json: data,
+        ...config,
+    });
+    return response.json<T>();
 }
 
 /**
@@ -88,13 +88,13 @@ export async function patchAsync<T = undefined>(
  * @returns 요청 성공 시 T 객체, 요청 실패 시 에러 throw
  */
 export async function putAsync<T = undefined>(
-  url: string,
-  data: unknown,
-  config?: Options,
+    url: string,
+    data: unknown,
+    config?: Options,
 ): Promise<T> {
-  const response = await API.put(url, {
-    json: data,
-    ...config,
-  });
-  return response.json<T>();
+    const response = await API.put(url, {
+        json: data,
+        ...config,
+    });
+    return response.json<T>();
 }

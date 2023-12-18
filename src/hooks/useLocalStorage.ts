@@ -32,7 +32,7 @@ const useLocalStorageValue = <T>(key: string, init: T) => {
         return () => {
             window.removeEventListener('storage', subscribeChangeStorageEvent);
         };
-    });
+    }, [key]);
 
     return storageValue;
 };
@@ -45,7 +45,7 @@ const useLocalStorageSetter = <T>(key: string, init: T) => {
             if (typeof window === 'undefined') return;
             const storedValue = getStorageValue(key, initialValueRef.current);
             const updatedValue =
-                value instanceof Function ? value(storedValue) as T : value;
+                value instanceof Function ? (value(storedValue) as T) : value;
 
             window.localStorage.setItem(key, JSON.stringify(updatedValue));
 
