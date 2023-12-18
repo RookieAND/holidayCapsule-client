@@ -11,24 +11,26 @@ const kakaoOauthRedirectUri = process.env.KAKAO_OAUTH_REDIRECT_URL;
 
 export class AuthRepository {
     /**
-     * 서비스 로그인 처리를 진행하는 함수 getLoginAsync
+     * 서비스 로그인 처리를 진행하는 함수 postLoginAsync
      */
-    static async getLoginAsync({
+    static async postLoginAsync({
         id,
         nickname,
         profileImageUrl,
     }: AuthReqParams['login']) {
-        const { access_token } = await getAsync<AuthResponse['login']>(
-            '/auth/login',
+        /**
+         * ky 사용 시 URL 앞에 slash 를 붙이면 에러 발생 (input must not begin with a slash when using prefixUrl)
+         * @see https://github.com/sindresorhus/ky/issues/70
+         */
+        const { accessToken } = await postAsync<AuthResponse['login']>(
+            'auth/login',
             {
-                searchParams: {
-                    id,
-                    nickname,
-                    profileImageUrl,
-                },
+                id,
+                nickname,
+                profileImageUrl,
             },
         );
-        return access_token;
+        return accessToken;
     }
 
     /**

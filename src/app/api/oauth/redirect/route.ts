@@ -29,19 +29,17 @@ export async function GET(request: Request) {
         const { id, profile } =
             await AuthRepository.getKakaoProfileAsync(kakaoAccessToken);
 
-        console.log(id, profile);
+        const accessToken = await AuthRepository.postLoginAsync({
+            id,
+            nickname: profile.nickname,
+            profileImageUrl: profile.profile_image_url,
+        });
 
-        // TODO : 백엔드 서버 개발 시 적용 예정
-        // const accessToken = await AuthRepository.getLoginAsync({
-        //     id,
-        //     nickname: profile.nickname,
-        //     profileImageUrl: profile.profile_image_url,
-        // });
-
-        // if (!accessToken) throw new Error('서버로부터 JWT 토큰을 인가받지 못했습니다.');
+        if (!accessToken)
+            throw new Error('서버로부터 JWT 토큰을 인가받지 못했습니다.');
 
         return NextResponse.json(
-            { id },
+            { accessToken },
             {
                 status: 200,
             },

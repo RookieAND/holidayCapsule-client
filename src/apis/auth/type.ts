@@ -7,8 +7,8 @@ type AuthReqParams = {
 };
 
 type AuthResponse = {
-  login: { access_token: string };
-  kakaoOauth: { access_token: string; refresh_token: string };
+  login: { accessToken: string };
+  kakaoOauth: { access_token: string };
   kakaoProfile: {
     id: string;
     kakao_account: {
