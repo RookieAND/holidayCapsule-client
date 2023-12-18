@@ -15,7 +15,7 @@
     "importOrder": [
       "^(next/(.*)$)|^(next$)|^(react/(.*)$)|^(react$)",
       "<THIRD_PARTY_MODULES>",
-      "^[@/$]",
+      "^[#/$]",
       "^[./]"
     ],
     "importOrderSeparation": true,
