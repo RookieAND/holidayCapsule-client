@@ -8,8 +8,6 @@ export const metadata: Metadata = {
   applicationName: APP_DESCRIPTION,
   manifest: '/manifest.json',
   keywords: ['holiday', 'capsule', 'album', 'nostalgia'],
-  viewport:
-    'minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover',
   openGraph: {
     type: 'website',
     url: '',
