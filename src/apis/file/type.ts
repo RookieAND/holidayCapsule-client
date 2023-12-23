@@ -4,8 +4,7 @@ type FileReqParams = {
     };
     uploadFile: {
         presignedUrl: string,
-        fileBuffer: Buffer,
-        mimetype: string,
+        file: File,
     }
 };
 

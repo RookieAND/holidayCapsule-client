@@ -21,13 +21,12 @@ export class FileRepository {
      */
     static async putUploadFile({
         presignedUrl,
-        fileBuffer,
-        mimetype,
+        file,
     }: FileReqParams['uploadFile']) {
-        await putAsync('', fileBuffer, {
+        await putAsync('', file, {
             prefixUrl: presignedUrl,
             headers: {
-                'Content-Type': mimetype,
+                'Content-Type': file.type,
             }
         });
     }
