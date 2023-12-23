@@ -17,6 +17,8 @@
   "author": "RookieAND <gwangin1999@naver.com>",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.478.0",
+    "@aws-sdk/s3-request-presigner": "^3.478.0",
     "@hookform/resolvers": "3.3.2",
     "@radix-ui/themes": "2.0.2",
     "@tanstack/react-query": "5.14.0",
