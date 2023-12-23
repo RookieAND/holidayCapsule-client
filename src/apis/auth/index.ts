@@ -1,5 +1,3 @@
-import { URLSearchParams } from 'next/dist/compiled/@edge-runtime/primitives/url';
-
 import { getAsync, postAsync } from '#/apis/API';
 
 const KAKAO_TOKEN_URL = 'https://kauth.kakao.com/oauth/token';
