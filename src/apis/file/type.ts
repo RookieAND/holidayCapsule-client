@@ -3,13 +3,13 @@ type FileReqParams = {
         fileKey: string;
     };
     uploadFile: {
-        presignedUrl: string,
+        url: string,
         file: File,
     }
 };
 
 type FileResponse = {
     presignedUrl: { 
-        presignedUrl: string
+        url: string
     };
 };

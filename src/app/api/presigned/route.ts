@@ -5,9 +5,9 @@ import {
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
-const awsAccessKey = process.env.MY_AWS_ACCESS_KEY;
-const awsSecretKey = process.env.MY_AWS_SECRET_KEY;
-const awsS3Bucket = process.env.MY_AWS_S3_BUCKET;
+const awsAccessKey = process.env.AWS_ACCESS_KEY;
+const awsSecretKey = process.env.AWS_SECRET_KEY;
+const awsS3Bucket = process.env.AWS_S3_BUCKET;
 
 const storage = new S3Client({
     region: 'ap-northeast-2',
@@ -36,17 +36,18 @@ export async function GET(request: Request) {
     });
 
     try {
-        const presignedUrl = await getSignedUrl(storage, command, {
+        const url = await getSignedUrl(storage, command, {
             expiresIn: 3600,
         });
 
         return NextResponse.json(
-            { presignedUrl },
+            { url },
             {
                 status: 200,
             },
         );
     } catch (error) {
+        console.log(error);
         return NextResponse.json(
             {
                 message:
