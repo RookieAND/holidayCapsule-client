@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
-import {
-    PutObjectCommand,
-    S3Client,
-} from '@aws-sdk/client-s3';
+
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 const awsAccessKey = process.env.AWS_ACCESS_KEY;
@@ -50,8 +48,7 @@ export async function GET(request: Request) {
         console.log(error);
         return NextResponse.json(
             {
-                message:
-                    'Presigned URL 생성 과정에서 문제가 발생했습니다.',
+                message: 'Presigned URL 생성 과정에서 문제가 발생했습니다.',
             },
             {
                 status: 500,
