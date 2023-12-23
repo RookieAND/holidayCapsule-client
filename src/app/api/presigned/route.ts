@@ -37,7 +37,7 @@ export async function GET(request: Request) {
 
     try {
         const url = await getSignedUrl(storage, command, {
-            expiresIn: 3600,
+            expiresIn: 5,
         });
 
         return NextResponse.json(
