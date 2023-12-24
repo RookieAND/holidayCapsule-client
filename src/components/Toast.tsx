@@ -10,16 +10,18 @@ import { type ToastType, addToastAtom, removeToastAtom } from '#/stores/toast';
 
 export const ToastProvider = () => {
     const { toastQueue } = useAtomValue(addToastAtom);
+
+    if (!toastQueue.length) return null;
+
+    const [{ sequence, message, category }] = toastQueue;
     return (
         <AppPortal.Wrapper portalName="toast-portal">
-            {toastQueue.slice(0, 1).map(({ category, message, sequence }) => (
-                <ToastMessage
-                    key={sequence}
-                    message={message}
-                    category={category}
-                    sequence={sequence}
-                />
-            ))}
+            <ToastMessage
+                key={sequence}
+                message={message}
+                category={category}
+                sequence={sequence}
+            />
         </AppPortal.Wrapper>
     );
 };

@@ -35,7 +35,7 @@ const PortalProvider = ({
     return (
         <PortalContext.Provider value={portalList}>
             <div
-                className={clsx('absolute w-full z-10', className)}
+                className={clsx('absolute z-10', className)}
                 id={portalName}
                 ref={(element) => {
                     if (element && !portalContainer)
@@ -54,6 +54,9 @@ const PortalProvider = ({
 const PortalWrapper = ({ children, portalName }: PortalWrapperProps) => {
     const portalList = useContext(PortalContext);
     const portalContainer = portalList.get(portalName);
+    
+    console.log(portalList);
+    
     return portalContainer ? createPortal(children, portalContainer) : null;
 };
 
