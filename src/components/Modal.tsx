@@ -1,30 +1,35 @@
-import { useContext } from 'react';
+import type { MouseEvent } from 'react';
 
-import * as Dialog from '@radix-ui/react-dialog';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import { PortalContext } from '#/components/AppPortal';
+import AppPortal from '#/components/AppPortal';
 import Button from '#/components/Button';
-import { addModalAtom, removeModalAtom } from '#/stores/modal/action';
-import type { ModalType } from '#/stores/modal/store';
+import { type ModalType, addModalAtom, removeModalAtom } from '#/stores/modal';
 
 export const ModalProvider = () => {
     const { modal } = useAtomValue(addModalAtom);
     const closeModal = useSetAtom(removeModalAtom);
-    const portalList = useContext(PortalContext);
 
-    const isOpen = !!modal;
+    console.log(modal);
 
-    const removeModalOnClose = (open: boolean) => !open && closeModal();
+    const handleClickOutSide = (event: MouseEvent<HTMLDivElement>) => {
+        closeModal();
+        event.stopPropagation();
+    };
+
+    if (!modal) return null;
 
     return (
-        <Dialog.Root open={isOpen} onOpenChange={removeModalOnClose}>
-            <Dialog.Portal container={portalList.get('modal-portal')}>
-                {modal && <Modal {...modal} />}
-                <Dialog.Overlay className="bg-creme/50 blur-lg w-full fixed inset-0" />
-            </Dialog.Portal>
-        </Dialog.Root>
+        <AppPortal.Wrapper portalName="modal-portal">
+            <Modal {...modal} />
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-creme/25 blur-lg w-full fixed inset-0"
+                onClick={handleClickOutSide}
+            />
+        </AppPortal.Wrapper>
     );
 };
 
@@ -44,28 +49,46 @@ export const Modal = ({
     onClose,
 }: ModalProps) => {
     const closeModal = useSetAtom(removeModalAtom);
+
+    const handleClickCloseButton = () => {
+        onClose?.();
+        closeModal();
+    };
+
+    const handleClickConfirmButton = () => {
+        onConfirm?.();
+        closeModal();
+    };
+
     return (
-        <Dialog.Content onInteractOutside={closeModal} asChild>
-            <div className="flex flex-col gap-1.5 justify-center items-center fixed -translate-x-1/2 left-1/2 top-36 min-w-[320px] z-10">
+        <AnimatePresence>
+            <motion.section
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col gap-1.5 justify-center items-center fixed -translate-x-1/2 left-1/2 top-36 min-w-[320px] z-10"
+            >
                 <div className="flex flex-col justify-center items-center bg-creme border-2 border-red-500 rounded-md px-4 py-6 w-full">
-                    <Dialog.Title className="px-4 py-0.5 bg-teal-500 text-white text-h2 rounded-md mx-auto mb-4 w-[160px] text-center">
+                    <h2 className="px-4 py-0.5 bg-teal-500 text-white rounded-md mx-auto mb-4 w-[160px] text-center">
                         {title}
-                    </Dialog.Title>
+                    </h2>
                     {children}
                 </div>
                 <div className="flex justify-center gap-1.5 w-100 mx-4">
-                    <Dialog.Close>
-                        <Button className="min-w-[140px]" onClick={onConfirm}>
-                            {confirmText}
-                        </Button>
-                    </Dialog.Close>
-                    <Dialog.Close>
-                        <Button className="min-w-[140px]" onClick={onClose}>
-                            {closeText}
-                        </Button>
-                    </Dialog.Close>
+                    <Button
+                        className="min-w-[140px]"
+                        onClick={handleClickConfirmButton}
+                    >
+                        {confirmText}
+                    </Button>
+                    <Button
+                        className="min-w-[140px]"
+                        onClick={handleClickCloseButton}
+                    >
+                        {closeText}
+                    </Button>
                 </div>
-            </div>
-        </Dialog.Content>
+            </motion.section>
+        </AnimatePresence>
     );
 };

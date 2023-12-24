@@ -35,7 +35,7 @@ const PortalProvider = ({
     return (
         <PortalContext.Provider value={portalList}>
             <div
-                className={clsx('absolute w-full', className)}
+                className={clsx('absolute w-full z-10', className)}
                 id={portalName}
                 ref={(element) => {
                     if (element && !portalContainer)
