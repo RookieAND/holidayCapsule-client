@@ -17,8 +17,6 @@ export const ModalProvider = () => {
         event.stopPropagation();
     };
 
-    console.log(modal);
-
     if (!modal) return null;
 
     return (

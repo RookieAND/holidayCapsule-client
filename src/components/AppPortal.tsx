@@ -54,9 +54,6 @@ const PortalProvider = ({
 const PortalWrapper = ({ children, portalName }: PortalWrapperProps) => {
     const portalList = useContext(PortalContext);
     const portalContainer = portalList.get(portalName);
-    
-    console.log(portalList);
-    
     return portalContainer ? createPortal(children, portalContainer) : null;
 };
 
