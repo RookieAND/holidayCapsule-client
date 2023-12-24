@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useAtomValue, useSetAtom } from 'jotai';
 
 import HolidayLogoSvg from '#/assets/icons/holidayLogo.svg';
-import LogoSvg from '#/assets/icons/logo.svg';
+import StarIconSvg from '#/assets/icons/starIcon.svg';
 import TeamLogoSvg from '#/assets/icons/teamLogo.svg';
 import AppPortal from '#/components/AppPortal';
 import { sidePanelAtom } from '#/stores/side-panel';
@@ -55,19 +55,20 @@ export const SidePanel = () => {
                                     {NAVIGATOR_OPTION.map(({ path, label }) => (
                                         <Link
                                             href={path}
-                                            className="flex gap-2 py-0.5 ml-4"
+                                            className="flex gap-2 py-0.5 ml-4 items-center"
                                             key={path}
                                         >
-                                            <LogoSvg width={24} height={24} />
-                                            <p className="border border-creme px-3 py-0.5 rounded-lg text-white hover:bg-creme hover:text-teal-500">
+                                            <StarIconSvg width={24} height={24}/>
+                                            <p className="border border-creme px-3 py-0.5 rounded-md text-white hover:bg-creme hover:text-teal-500">
                                                 {label}
                                             </p>
                                         </Link>
                                     ))}
                                 </div>
-                                <div className="flex gap-1">
-                                    <HolidayLogoSvg width={128} height={128} />
-                                    <TeamLogoSvg width={128} height={128} />
+                                <div className="px-10 flex gap-4 items-center justify-between">
+                                    <HolidayLogoSvg width={80} height={80} />
+                                    <div className='w-[1px] h-6 bg-creme border-r-creme' />
+                                    <TeamLogoSvg width={100} height={80} />
                                 </div>
                             </aside>
                         </motion.div>
