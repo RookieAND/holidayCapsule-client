@@ -8,14 +8,14 @@ export interface ToastType {
     sequence: number
 }
 
-export interface ModalProviderType {
+export interface ToastProviderType {
     /** 렌더링 해야 할 토스트 목록 */
     toastQueue: ToastType[],
     /** 현재 렌더링 중인 Sequence */
     sequence: number;
 }
 
-export const toastAtom = atom<ModalProviderType>({
+export const toastAtom = atom<ToastProviderType>({
     toastQueue: [],
     sequence: 0,
 })

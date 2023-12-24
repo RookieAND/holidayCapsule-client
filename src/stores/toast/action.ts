@@ -8,8 +8,8 @@ export const addToastAtom = atom(
         const prevAtom = get(toastAtom);
         const waitingToastAmount = prevAtom.toastQueue.length;
 
-        // NOTE : 토스트가 6개 이상 쌓였을 경우에는 더 이상 쌓이지 않도록 한다.
-        if (waitingToastAmount > 6) return;
+        // NOTE : 토스트가 3개 이상 쌓였을 경우에는 더 이상 쌓이지 않도록 한다.
+        if (waitingToastAmount > 3) return;
 
         set(toastAtom, {
             toastQueue: [
@@ -25,9 +25,11 @@ export const removeToastAtom = atom(
     (get) => get(toastAtom),
     (get, set, sequence: number) => {
         const prevAtom = get(toastAtom);
-        set(toastAtom, { 
-            toastQueue: prevAtom.toastQueue.filter((toast) => toast.sequence !== sequence),
+        set(toastAtom, {
+            toastQueue: prevAtom.toastQueue.filter(
+                (toast) => toast.sequence !== sequence,
+            ),
             sequence: prevAtom.sequence,
-         });
+        });
     },
 );

@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useSetAtom } from 'jotai';
 
 import { addModalAtom, removeModalAtom } from '#/stores/modal/action';
@@ -7,9 +9,15 @@ import { ToastType } from '#/stores/toast/store';
 
 export const useToast = () => {
     const addToast = useSetAtom(addToastAtom);
-    return {
-        success: (message: string) =>
-            addToast({ message, category: 'success' }),
-        alert: (message: string) => addToast({ message, category: 'alert' }),
-    };
+    const toast = useMemo(
+        () => ({
+            success: (message: string) =>
+                addToast({ message, category: 'success' }),
+            alert: (message: string) =>
+                addToast({ message, category: 'alert' }),
+        }),
+        [addToast],
+    );
+
+    return toast;
 };

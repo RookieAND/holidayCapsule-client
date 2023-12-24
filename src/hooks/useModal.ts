@@ -1,13 +1,17 @@
+import { useMemo } from 'react';
+
 import { useSetAtom } from 'jotai';
 
-import { addModalAtom, removeModalAtom } from '#/stores/modal/action';
-import { ModalType } from '#/stores/modal/store';
+import { type ModalType, addModalAtom, removeModalAtom } from '#/stores/modal';
 
 export const useModal = () => {
     const addModal = useSetAtom(addModalAtom);
     const removeModal = useSetAtom(removeModalAtom);
-    return {
+
+    const modal = useMemo(() => ({
         open: (openedModal: ModalType) => addModal(openedModal),
         close: removeModal,
-    };
+    }),[addModal, removeModal]);
+
+    return modal;
 };

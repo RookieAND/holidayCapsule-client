@@ -12,7 +12,7 @@ export default function Template({ children }: PropsWithChildren) {
             <AppPortal.Provider portalName="modal-portal" className='top-0 left-0 '>
                 <ModalProvider />
             </AppPortal.Provider>
-            <AppPortal.Provider portalName="toast-portal" className='bottom-32 z-10'>
+            <AppPortal.Provider portalName="toast-portal" className='bottom-32'>
                 <ToastProvider />
             </AppPortal.Provider>
             <main className="relative m-auto min-h-screen min-w-[360px] max-w-[480px] bg-gray-500">

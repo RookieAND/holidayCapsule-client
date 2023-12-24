@@ -11,8 +11,6 @@ export const ModalProvider = () => {
     const { modal } = useAtomValue(addModalAtom);
     const closeModal = useSetAtom(removeModalAtom);
 
-    console.log(modal);
-
     const handleClickOutSide = (event: MouseEvent<HTMLDivElement>) => {
         closeModal();
         event.stopPropagation();

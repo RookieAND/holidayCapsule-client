@@ -1,22 +1,17 @@
-import { HTMLAttributes, useContext, useEffect } from 'react';
+import { HTMLAttributes, useCallback, useEffect } from 'react';
 
-import * as Toast from '@radix-ui/react-toast';
 import { type VariantProps, cva } from 'class-variance-authority';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useAtomValue, useSetAtom } from 'jotai';
 
-import AppPortal, { PortalContext } from '#/components/AppPortal';
-import { addToastAtom, removeToastAtom } from '#/stores/toast/action';
-import type { ToastCategoryType, ToastType } from '#/stores/toast/store';
+import BellSvg from '#/assets/icons/bell.svg';
+import AppPortal from '#/components/AppPortal';
+import { type ToastType, addToastAtom, removeToastAtom } from '#/stores/toast';
 
 export const ToastProvider = () => {
     const { toastQueue } = useAtomValue(addToastAtom);
-    const closeModal = useSetAtom(removeToastAtom);
-    const portalList = useContext(PortalContext);
-
-    console.log(toastQueue);
-
     return (
-        <Toast.Provider swipeDirection="up">
+        <AppPortal.Wrapper portalName="toast-portal">
             {toastQueue.slice(0, 1).map(({ category, message, sequence }) => (
                 <ToastMessage
                     key={sequence}
@@ -25,17 +20,14 @@ export const ToastProvider = () => {
                     sequence={sequence}
                 />
             ))}
-            <Toast.Viewport className="mx-auto">
-                <AppPortal.Wrapper portalName="toast-portal" />
-            </Toast.Viewport>
-        </Toast.Provider>
+        </AppPortal.Wrapper>
     );
 };
 
 const ToastVariants = cva(
     `
-    flex justify-center mb-2 mx-auto
-    min-w-[320px] max-w-[320px] px-8 py-1.5 flex items-center rounded-sm
+    flex justify-center items-center mx-auto
+    min-w-[320px] max-w-[320px] px-8 py-2 rounded-md
     `,
     {
         variants: {
@@ -63,21 +55,31 @@ export const ToastMessage = ({
     className,
 }: ToastProps) => {
     const closeToast = useSetAtom(removeToastAtom);
-    const removeToastOnClose = () => closeToast(sequence);
+
+    const removeToastOnClose = useCallback(
+        () => closeToast(sequence),
+        [closeToast, sequence],
+    );
 
     useEffect(() => {
         const timeoutForRemove = setTimeout(removeToastOnClose, 3000);
         () => clearTimeout(timeoutForRemove);
-    });
+    }, [removeToastOnClose]);
 
     return (
-        <Toast.Root
-            className={ToastVariants({ theme, className })}
-            onSwipeEnd={removeToastOnClose}
-        >
-            <Toast.Title className="text-white text-subtitle1">
-                {message}
-            </Toast.Title>
-        </Toast.Root>
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                onClick={removeToastOnClose}
+                className="flex flex-col justify-center items-center"
+            >
+                <BellSvg width={50} height={50} className="translate-y-3.5" />
+                <div className={ToastVariants({ theme, className })}>
+                    <p className="text-white text-subtitle1">{message}</p>
+                </div>
+            </motion.div>
+        </AnimatePresence>
     );
 };
