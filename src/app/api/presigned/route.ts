@@ -45,7 +45,6 @@ export async function GET(request: Request) {
             },
         );
     } catch (error) {
-        console.log(error);
         return NextResponse.json(
             {
                 message: 'Presigned URL 생성 과정에서 문제가 발생했습니다.',
