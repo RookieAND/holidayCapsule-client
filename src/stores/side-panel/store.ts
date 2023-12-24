@@ -1,5 +1,6 @@
-import { atom } from 'jotai';
 import type { ReactNode } from 'react';
+
+import { atom } from 'jotai';
 
 export interface SidePanelProvider {
     isOpen: boolean;
@@ -7,4 +8,4 @@ export interface SidePanelProvider {
 
 export const sidePanelAtom = atom<SidePanelProvider>({
     isOpen: false,
-})
+});

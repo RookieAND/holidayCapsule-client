@@ -51,14 +51,17 @@ export const SidePanel = () => {
                                         아몰랑 캡슐입니다
                                     </h4>
                                 </div>
-                                <div className="flex flex-col gap-2 border-y-2 border-creme w-full py-6">
+                                <div className="flex flex-col gap-2 border-y-2 border-creme w-full py-6 mb-auto">
                                     {NAVIGATOR_OPTION.map(({ path, label }) => (
                                         <Link
                                             href={path}
                                             className="flex gap-2 py-0.5 ml-4 items-center"
                                             key={path}
                                         >
-                                            <StarIconSvg width={24} height={24}/>
+                                            <StarIconSvg
+                                                width={24}
+                                                height={24}
+                                            />
                                             <p className="border border-creme px-3 py-0.5 rounded-md text-white hover:bg-creme hover:text-teal-500">
                                                 {label}
                                             </p>
@@ -67,7 +70,7 @@ export const SidePanel = () => {
                                 </div>
                                 <div className="px-10 flex gap-4 items-center justify-between">
                                     <HolidayLogoSvg width={80} height={80} />
-                                    <div className='w-[1px] h-6 bg-creme border-r-creme' />
+                                    <div className="w-[1px] h-6 bg-creme border-r-creme" />
                                     <TeamLogoSvg width={100} height={80} />
                                 </div>
                             </aside>

@@ -8,10 +8,13 @@ export const useModal = () => {
     const addModal = useSetAtom(addModalAtom);
     const removeModal = useSetAtom(removeModalAtom);
 
-    const modal = useMemo(() => ({
-        open: (openedModal: ModalType) => addModal(openedModal),
-        close: removeModal,
-    }),[addModal, removeModal]);
+    const modal = useMemo(
+        () => ({
+            open: (openedModal: ModalType) => addModal(openedModal),
+            close: removeModal,
+        }),
+        [addModal, removeModal],
+    );
 
     return modal;
 };

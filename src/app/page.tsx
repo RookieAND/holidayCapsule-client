@@ -1,8 +1,8 @@
 'use client';
 
 import { useModal } from '#/hooks/useModal';
-import { useToast } from '#/hooks/useToast';
 import { useSidePanel } from '#/hooks/useSidePanel';
+import { useToast } from '#/hooks/useToast';
 
 export default function Home() {
     const modal = useModal();
@@ -22,16 +22,8 @@ export default function Home() {
             >
                 test Modal
             </button>
-            <button
-                onClick={() =>
-                    toast.success('성공!')
-                }
-            >
-                test Toast
-            </button>
-            <button onClick={() => sidePanel.toggle()}>
-                test SidePanel
-            </button>
+            <button onClick={() => toast.success('성공!')}>test Toast</button>
+            <button onClick={() => sidePanel.toggle()}>test SidePanel</button>
         </main>
     );
 }
