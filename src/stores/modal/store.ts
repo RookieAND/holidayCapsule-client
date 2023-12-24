@@ -7,13 +7,10 @@ export interface ModalType {
 }
 
 export interface ModalProviderType {
-    /** 렌더링 해야 할 모달 Queue */
-    modalQueue: ModalType[],
-    /** 모달 Queue 에 전역으로 공유할 데이터 */
-    shared: Map<string, unknown>
+    /** 렌더링 해야 할 모달 */
+    modal: ModalType | undefined,
 }
 
 export const modalAtom = atom<ModalProviderType>({
-    modalQueue: [],
-    shared: new Map(),
+    modal: undefined,
 })
