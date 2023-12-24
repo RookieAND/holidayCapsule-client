@@ -35,7 +35,7 @@ const PortalProvider = ({
     return (
         <PortalContext.Provider value={portalList}>
             <div
-                className={clsx('absolute top-0 left-0 w-full', className)}
+                className={clsx('absolute w-full', className)}
                 id={portalName}
                 ref={(element) => {
                     if (element && !portalContainer)
@@ -54,13 +54,6 @@ const PortalProvider = ({
 const PortalWrapper = ({ children, portalName }: PortalWrapperProps) => {
     const portalList = useContext(PortalContext);
     const portalContainer = portalList.get(portalName);
-
-    if (!portalContainer) {
-        console.error(
-            `${portalName} 을 가진 PortalProvider 를 찾을 수 없습니다.`,
-        );
-    }
-
     return portalContainer ? createPortal(children, portalContainer) : null;
 };
 
