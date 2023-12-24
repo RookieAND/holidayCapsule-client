@@ -7,7 +7,7 @@ export const useModal = () => {
     const addModal = useSetAtom(addModalAtom);
     const removeModal = useSetAtom(removeModalAtom);
     return {
-        open: ({ title, children }: ModalType) => addModal({ title, children }),
+        open: (openedModal: ModalType) => addModal(openedModal),
         close: removeModal,
     };
 };

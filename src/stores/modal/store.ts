@@ -4,6 +4,10 @@ import type { ReactNode } from 'react';
 export interface ModalType {
     title: string;
     children: ReactNode;
+    confirmText: string;
+    onConfirm?: () => void;
+    closeText: string;
+    onClose?: () => void;
 }
 
 export interface ModalProviderType {

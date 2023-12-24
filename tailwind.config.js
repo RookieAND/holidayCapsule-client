@@ -17,7 +17,7 @@ const config = {
         h4: ["1.125rem", { lineHeight: "1.625rem", fontWeight: 700 }],
         subtitle1: ["1rem", { lineHeight: "1.5rem", fontWeight: 700 }],
         subtitle2: ["0.875rem", { lineHeight: "1.375rem", fontWeight: 700 }],
-        body1: ["1.125rem", { lineHeight: "1.625rem", fontWeight: 400 }],
+        body1: ["1.125rem", { lineHeight: "1.625rem", fontWeight: 500 }],
         body2: ["1rem", { lineHeight: "1.5rem", fontWeight: 400 }],
         body3: ["0.875rem", { lineHeight: "1.375rem", fontWeight: 400 }],
         caption: ["0.75rem", { lineHeight: "1.25rem", fontWeight: 500 }],

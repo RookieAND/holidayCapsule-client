@@ -4,10 +4,10 @@ import { type ModalType, modalAtom } from './store';
 
 export const addModalAtom = atom(
     (get) => get(modalAtom),
-    (get, set, { title, children }: ModalType) => {
+    (get, set, newModal: ModalType) => {
         const prevAtom = get(modalAtom);
         set(modalAtom, {
-            modal: { title, children },
+            modal: newModal,
         });
     },
 );
