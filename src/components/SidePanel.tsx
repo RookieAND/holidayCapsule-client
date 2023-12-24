@@ -42,8 +42,8 @@ export const SidePanel = () => {
                             transition={{ ease: 'easeOut', duration: 0.25 }}
                             className="flex"
                         >
-                            <aside className="min-w-[240px] w-[300px] max-w-[360px] h-screen bg-teal-500 py-16 z-1">
-                                <div className="px-8 pb-6 flex flex-col gap-0.5 items-start">
+                            <aside className="min-w-[240px] w-[300px] max-w-[360px] h-screen bg-teal-500 py-6 z-1">
+                                <div className="p-6 flex flex-col gap-0.5 items-start">
                                     <h4 className="text-white">
                                         내 캡슐 이름은
                                     </h4>
@@ -59,13 +59,13 @@ export const SidePanel = () => {
                                             key={path}
                                         >
                                             <LogoSvg width={24} height={24} />
-                                            <p className="border border-creme px-4 py-0.5 rounded-lg text-white">
+                                            <p className="border border-creme px-3 py-0.5 rounded-lg text-white hover:bg-creme hover:text-teal-500">
                                                 {label}
                                             </p>
                                         </Link>
                                     ))}
                                 </div>
-                                <div className="flex gap-1 mx-auto">
+                                <div className="flex gap-1">
                                     <HolidayLogoSvg width={128} height={128} />
                                     <TeamLogoSvg width={128} height={128} />
                                 </div>

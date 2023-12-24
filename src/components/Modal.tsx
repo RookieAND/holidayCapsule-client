@@ -3,6 +3,7 @@ import type { MouseEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAtomValue, useSetAtom } from 'jotai';
 
+import HolidayStarLogoSvg from '#/assets/icons/holidayStarLogo.svg';
 import AppPortal from '#/components/AppPortal';
 import Button from '#/components/Button';
 import { type ModalType, addModalAtom, removeModalAtom } from '#/stores/modal';
@@ -26,7 +27,7 @@ export const ModalProvider = () => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-creme/25 blur-lg w-full fixed inset-0"
+                className="bg-creme/50 blur-lg w-full fixed inset-0"
                 onClick={handleClickOutSide}
             />
         </AppPortal.Wrapper>
@@ -68,6 +69,7 @@ export const Modal = ({
                 exit={{ opacity: 0 }}
                 className="flex flex-col gap-1.5 justify-center items-center fixed -translate-x-1/2 left-1/2 top-36 min-w-[320px] z-10"
             >
+                <HolidayStarLogoSvg width={200} className="text-red-500 mb-2" />
                 <div className="flex flex-col justify-center items-center bg-creme border-2 border-red-500 rounded-md px-4 py-6 w-full shadow-md">
                     <h2 className="px-4 py-0.5 bg-teal-500 text-white rounded-md mx-auto mb-4 w-[160px] text-center">
                         {title}
