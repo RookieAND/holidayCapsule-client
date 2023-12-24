@@ -35,7 +35,7 @@ export default function RootLayout({
                     type="text/css"
                 />
             </head>
-            <body className="relative m-auto min-h-screen min-w-[360px] max-w-[480px] bg-gray-500">
+            <body>
                 <ReactQueryProvider>
                     <JotaiAtomProvider>{children}</JotaiAtomProvider>
                 </ReactQueryProvider>
