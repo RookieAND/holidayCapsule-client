@@ -44,17 +44,6 @@ export const Modal = ({
     onClose,
 }: ModalProps) => {
     const closeModal = useSetAtom(removeModalAtom);
-
-    const handleClickConfirm = () => {
-        onConfirm?.();
-        closeModal();
-    };
-
-    const handleClickClose = () => {
-        onClose?.();
-        closeModal();
-    };
-
     return (
         <Dialog.Content onInteractOutside={closeModal} asChild>
             <div className="flex flex-col gap-1.5 justify-center items-center fixed -translate-x-1/2 left-1/2 top-36 min-w-[320px] z-10">
