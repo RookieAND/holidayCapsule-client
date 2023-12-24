@@ -30,6 +30,7 @@ const ToastVariants = cva(
     `
     flex justify-center items-center mx-auto
     min-w-[320px] max-w-[320px] px-8 py-2 rounded-md
+    shadow-lg
     `,
     {
         variants: {
