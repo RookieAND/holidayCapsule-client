@@ -12,7 +12,7 @@ interface PortalWrapperProps extends HTMLAttributes<HTMLDivElement> {
     portalName: string;
 }
 
-const PortalContext = createContext<Map<string, HTMLDivElement | null>>(
+export const PortalContext = createContext<Map<string, HTMLDivElement | null>>(
     new Map(),
 );
 
@@ -56,10 +56,12 @@ const PortalWrapper = ({ children, portalName }: PortalWrapperProps) => {
     const portalContainer = portalList.get(portalName);
 
     if (!portalContainer) {
-        throw new Error(`${portalName} 을 가진 PortalProvider 를 찾을 수 없습니다.`);
+        console.error(
+            `${portalName} 을 가진 PortalProvider 를 찾을 수 없습니다.`,
+        );
     }
 
-    return createPortal(children, portalContainer);
+    return portalContainer ? createPortal(children, portalContainer) : null;
 };
 
 const AppPortal = {
