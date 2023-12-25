@@ -1,6 +1,7 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
+import Snowfall from 'react-snowfall'
 
 import AppPortal from '#/components/AppPortal';
 import { ModalProvider } from '#/components/Modal';
@@ -29,6 +30,7 @@ export default function Template({ children }: PropsWithChildren) {
                 >
                     <SidePanel />
                 </AppPortal.Provider>
+                <Snowfall color="#F9F9E8" snowflakeCount={75} />
                 {children}
             </main>
         </>
